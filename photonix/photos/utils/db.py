@@ -22,7 +22,9 @@ def record_photo(path):
 
     metadata = PhotoMetadata(path)
     date_taken = parse_datetime(metadata.get('Date/Time Original'))
-
+    if date_taken is None:
+        date_taken = datetime.now(utc)
+        
     camera = None
     camera_make = metadata.get('Make')
     camera_model = metadata.get('Camera Model Name')
